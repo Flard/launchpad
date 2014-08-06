@@ -176,6 +176,10 @@ namespace LaunchPad2
         {
             var definition = new[] { new { Loop = false, Path = @"", X = -1, Y = -1 } };
             var path = @"D:\launchpad.json";
+            if (!File.Exists(path))
+            {
+                return;
+            }
             var json = File.ReadAllText(path);
             //this.handlers = JsonConvert.DeserializeObject<LaunchpadButtonHandler[]>(json);
             try
