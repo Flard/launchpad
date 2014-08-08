@@ -120,7 +120,14 @@ namespace LaunchPad2
             if (res == DialogResult.OK)
             {
                 var path = win.FileName;
-                Handler.Load(path);
+                try
+                {
+                    Handler.Load(path);
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show("Invalid audio format:\n\n" + ex.Message, "Launchpad");
+                }
             }
             else
             {
