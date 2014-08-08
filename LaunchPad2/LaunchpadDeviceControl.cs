@@ -73,6 +73,9 @@ namespace LaunchPad2
                         this[x, y].Manager = value;
 
                     }
+
+                    this.toolButtons[x].Manager = value;
+                    this.sideButtons[x].Manager = value;
                 }
             }
         }
