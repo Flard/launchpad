@@ -41,5 +41,10 @@ namespace LaunchPad2
         {
             tsbConnect.Checked = true;
         }
+
+        private void tsbConnect_Click(object sender, EventArgs e)
+        {
+            manager.Start();
+        }
     }
 }

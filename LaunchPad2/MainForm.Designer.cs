@@ -29,19 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.launchpadDeviceControl1 = new LaunchPad2.LaunchpadDeviceControl();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbConnect = new System.Windows.Forms.ToolStripButton();
+            this.launchpadDeviceControl1 = new LaunchPad2.LaunchpadDeviceControl();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // launchpadDeviceControl1
-            // 
-            this.launchpadDeviceControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.launchpadDeviceControl1.Location = new System.Drawing.Point(0, 0);
-            this.launchpadDeviceControl1.Name = "launchpadDeviceControl1";
-            this.launchpadDeviceControl1.Size = new System.Drawing.Size(950, 559);
-            this.launchpadDeviceControl1.TabIndex = 1;
             // 
             // toolStrip1
             // 
@@ -61,6 +53,15 @@
             this.tsbConnect.Name = "tsbConnect";
             this.tsbConnect.Size = new System.Drawing.Size(134, 22);
             this.tsbConnect.Text = "Connect Launchpad";
+            this.tsbConnect.Click += new System.EventHandler(this.tsbConnect_Click);
+            // 
+            // launchpadDeviceControl1
+            // 
+            this.launchpadDeviceControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.launchpadDeviceControl1.Location = new System.Drawing.Point(0, 0);
+            this.launchpadDeviceControl1.Name = "launchpadDeviceControl1";
+            this.launchpadDeviceControl1.Size = new System.Drawing.Size(950, 559);
+            this.launchpadDeviceControl1.TabIndex = 1;
             // 
             // MainForm
             // 
