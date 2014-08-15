@@ -58,9 +58,9 @@
             // launchpadDeviceControl1
             // 
             this.launchpadDeviceControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.launchpadDeviceControl1.Location = new System.Drawing.Point(0, 0);
+            this.launchpadDeviceControl1.Location = new System.Drawing.Point(0, 25);
             this.launchpadDeviceControl1.Name = "launchpadDeviceControl1";
-            this.launchpadDeviceControl1.Size = new System.Drawing.Size(950, 559);
+            this.launchpadDeviceControl1.Size = new System.Drawing.Size(950, 534);
             this.launchpadDeviceControl1.TabIndex = 1;
             // 
             // MainForm
@@ -68,8 +68,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 559);
-            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.launchpadDeviceControl1);
+            this.Controls.Add(this.toolStrip1);
             this.Name = "MainForm";
             this.Text = "LaunchPad";
             this.Load += new System.EventHandler(this.MainForm_Load);
