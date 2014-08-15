@@ -20,7 +20,10 @@ namespace LaunchPad2
         AudioPlaybackEngine engine = new AudioPlaybackEngine();
 
         ToolMode toolButtonMode = ToolMode.StopAll;
-        ToolMode sideButtonMode = ToolMode.PlayAll;
+        ToolMode sideButtonMode = ToolMode.StopAll;
+
+        public event EventHandler LaunchpadConnected;
+        public event EventHandler LaunchpadDisconnected;
 
         enum ToolMode
         {
@@ -28,9 +31,8 @@ namespace LaunchPad2
             PlayAll
         }
 
-        public LaunchpadManager(LaunchpadDevice device, LaunchpadDeviceControl controls)
+        public LaunchpadManager(LaunchpadDeviceControl controls)
         {
-            this.device = device;
             this.controls = controls;
 
             // Setup Top toolbar
@@ -56,11 +58,32 @@ namespace LaunchPad2
 
         public void Start()
         {
+            // init device
+            try
+            {
+                this.device = new LaunchpadDevice();
+
+                if (LaunchpadConnected != null)
+                {
+                    LaunchpadConnected(this, null);
+                }
+            }
+            catch (IntelOrca.Launchpad.LaunchpadException ex)
+            {
+                if (LaunchpadDisconnected != null)
+                {
+                    LaunchpadDisconnected(this, null);
+                }
+            }
+
             controls.Manager = this;
 
             handlers.ToList().ForEach(x => x.Init());
 
-            device.ButtonPressed += device_ButtonPressed;
+            if (device != null)
+            {
+                device.ButtonPressed += device_ButtonPressed;
+            }
         }
 
         void device_ButtonPressed(object sender, ButtonPressEventArgs e)
@@ -108,6 +131,7 @@ namespace LaunchPad2
 
         internal LaunchpadButton getButton(int x, int y)
         {
+            if (device == null) return null;
             return device[x, y];
         }
 
@@ -235,7 +259,7 @@ namespace LaunchPad2
                     SetToolbarBrightness(i, ButtonBrightness.Off, activeColumns[i] ? ButtonBrightness.Full : ButtonBrightness.Medium);
                 }
 
-                if (toolButtonMode == ToolMode.PlayAll)
+                if (sideButtonMode == ToolMode.StopAll)
                 {
                     SetSidebarBrightness(i, activeRows[i] ? ButtonBrightness.Full : ButtonBrightness.Low, ButtonBrightness.Off);
                 }
@@ -250,12 +274,18 @@ namespace LaunchPad2
         public void SetToolbarBrightness(int index, ButtonBrightness red, ButtonBrightness green)
         {
             this.controls.getToolbarButton(index).SetBrightness(red, green);
-            this.device.GetButton((ToolbarButton)index).SetBrightness(red, green);
+            if (this.device != null)
+            {
+                this.device.GetButton((ToolbarButton)index).SetBrightness(red, green);
+            }
         }
         public void SetSidebarBrightness(int index, ButtonBrightness red, ButtonBrightness green)
         {
             this.controls.getSidebarButton(index).SetBrightness(red, green);
-            this.device.GetButton((SideButton)index).SetBrightness(red, green);
+            if (this.device != null)
+            {
+                this.device.GetButton((SideButton)index).SetBrightness(red, green);
+            }
         }
     }
 }

@@ -23,13 +23,23 @@ namespace LaunchPad2
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // init device
-            device = new LaunchpadDevice();
-
             // init manager
-            manager = new LaunchpadManager(device, this.launchpadDeviceControl1);
+            manager = new LaunchpadManager(this.launchpadDeviceControl1);
+
+            manager.LaunchpadConnected += manager_LaunchpadConnected;
+            manager.LaunchpadDisconnected += manager_LaunchpadDisconnected;
 
             manager.Start();
+        }
+
+        void manager_LaunchpadDisconnected(object sender, EventArgs e)
+        {
+            tsbConnect.Checked = false;
+        }
+
+        void manager_LaunchpadConnected(object sender, EventArgs e)
+        {
+            tsbConnect.Checked = true;
         }
     }
 }

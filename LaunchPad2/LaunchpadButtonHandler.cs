@@ -47,7 +47,9 @@ namespace LaunchPad2
 
         public void Init()
         {
-            ResetBrightness();            
+            ResetBrightness();
+            this.control = manager.getControl(x, y);
+            this.button = manager.getButton(x, y);
         }
 
         public void Load(string path)
@@ -101,8 +103,8 @@ namespace LaunchPad2
 
         public void SetBrightness(ButtonBrightness red, ButtonBrightness green)
         {
-            button.SetBrightness(red, green);
-            control.SetBrightness(red, green);
+            if (button != null) button.SetBrightness(red, green);
+            if (control != null) control.SetBrightness(red, green);
         }
 
         internal void TriggerPress()
