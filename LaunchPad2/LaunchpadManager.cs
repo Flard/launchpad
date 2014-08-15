@@ -198,7 +198,7 @@ namespace LaunchPad2
 
         public void LoadConfig()
         {
-            var definition = new[] { new { Loop = false, Path = @"", X = -1, Y = -1 } };
+            var definition = new[] { new { Loop = false, Path = @"", X = -1, Y = -1, Toggle = false } };
             var path = @"D:\launchpad.json";
             if (!File.Exists(path))
             {
@@ -216,6 +216,7 @@ namespace LaunchPad2
                     var handler = this.getHandler(config.X, config.Y);
                     handler.Load(config.Path);
                     handler.Loop = config.Loop;
+                    handler.Toggle = config.Toggle;
 
                 }
             }

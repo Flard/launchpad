@@ -33,7 +33,7 @@ namespace LaunchPad2
         CachedSound sound;
         CachedSoundSampleProvider soundProvider;
         string path;
-        bool loop;
+        bool loop, toggle;
 
         public LaunchpadButtonHandler(LaunchpadManager manager, int x, int y)
         {
@@ -111,8 +111,23 @@ namespace LaunchPad2
         {
             if (HasFile)
             {
-                Stop();
-                Play();
+                if (Toggle)
+                {
+                    if (IsPlaying)
+                    {
+                        Stop();
+                    }
+                    else
+                    {
+                        Play();
+                    }
+                }
+                else
+                {
+
+                    Stop();
+                    Play();
+                }
             }
         }
 
@@ -158,6 +173,18 @@ namespace LaunchPad2
                 {
                     sound.Loop = value;
                 }
+            }
+        }
+
+        public bool Toggle
+        {
+            get { return toggle; }
+            set
+            {
+                toggle = value;
+                ResetBrightness();
+
+                manager.SaveConfig();
             }
         }
 

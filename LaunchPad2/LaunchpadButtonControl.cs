@@ -107,6 +107,8 @@ namespace LaunchPad2
             this.loopToolStripMenuItem.Checked = handler.Loop && handler.HasFile;
             this.loopToolStripMenuItem.Enabled = handler.HasFile;
             this.clearToolStripMenuItem.Enabled = handler.HasFile;
+            this.toggleToolStripMenuItem.Enabled = handler.HasFile;
+            this.toggleToolStripMenuItem.Checked = handler.Toggle && handler.HasFile;
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -153,6 +155,11 @@ namespace LaunchPad2
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Handler.Clear();
+        }
+
+        private void toggleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Handler.Toggle = !this.Handler.Toggle;
         }
     }
 }
