@@ -104,13 +104,13 @@ namespace LaunchPad2
                     }
                     break;
                 case ButtonType.Toolbar:
-                    if (sideButtonMode == ToolMode.PlayAll)
+                    if (toolButtonMode == ToolMode.StopAll)
                     {
                         this.StopColumn((int)e.ToolbarButton);
                     }
                     else
                     {
-                        this.PlayRow((int)e.ToolbarButton);
+                        this.PlayColumn((int)e.ToolbarButton);
                     }
                     break;
             }
